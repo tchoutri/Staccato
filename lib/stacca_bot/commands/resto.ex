@@ -16,6 +16,10 @@ defmodule StaccaBot.Commands.Resto do
             callback_data: "/resto Le Train de Vie",
             text: "Le Train de Vie",
           },
+          %{
+            callback_data: "/resto Istambul Express",
+            text: "Istambul Express",
+          },
         ]
       ]
     }
