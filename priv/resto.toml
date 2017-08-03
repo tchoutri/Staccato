@@ -1,16 +1,19 @@
 [Luna Rossa]
 
-[Luna Rossa.pizza]
+description = "Une charmante pizzeria située à Romainville"
+coordonees  = [48.8818653,2.4394738]
+
+[Luna Rossa.carte.pizza]
 
 Quatre Fromages = 15
 Margherita      = 13
 
-[Luna Rossa.pasta]
+[Luna Rossa.carte.pasta]
 
 Tagliatelle Carbonara = 13
 Spaghetti Saumon      = 12
 
-[Luna Rossa.vin]
+[Luna Rossa.carte.vin]
 
 Rouge de Bourgogne = 16
 Blanc de Provence  = 12
@@ -19,15 +22,21 @@ Blanc de Provence  = 12
 
 [Le Train de Vie]
 
-[Le Train de Vie.plats]
+description = "Un petit restaurant dont la majorité du menu change chaque semaine…"
+coordonees = [48.8826735,2.433251]
+
+[Le Train de Vie.carte.plats]
 
 Burger Frites               = 11
 Pièce du boucher / Frites   = 12
 
 
-[Istambul Express]
+[Istanbul Express]
 
-[Istambul Express.kebab]
+description = "Un restaurant kebab à côté du Conservatoire"
+coordonees = [48.8828764,2.4318964]
+
+[Istanbul Express.carte.kebab]
 
 Adana = 6.50
 Boulettes = 6.50
@@ -41,24 +50,25 @@ Mixte = 7.50
 Speciale Kebab = 7.50
 Steak = 7
 
-[Istambul Express.burger]
+[Istanbul Express.carte.burger]
 
 Cheese Burger = 5
 Double Cheese = 6
-Triple Cheese = 7
 Hummer H1     = 5
 Hummer H2     = 6
 Hummer H3     = 7
+Triple Cheese = 7
 
-[Istambul Express.assiette]
+[Istanbul Express.carte.assiette]
 
+Adana = 8
 Brochette d'agneau = 9
 Brochette de poulet = 8
-Kofte = 8
-Adana = 8
-Grecque = 8
-Mixte  = 11
-Cotelette =  10
-Steak = 8
 Chicken = 8
+Cotelette =  10
+Grecque = 8
+Kofte = 8
 Merguez = 7.50
+Mixte  = 11
+Steak = 8
+
