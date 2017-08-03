@@ -33,11 +33,12 @@ defmodule StaccaBot.Commands do
     case update.callback_query.data do
       "/resto " <> resto ->
         Logger.debug "[+] Dispatching for " <> resto
+        {lat, long, adresse} = Resto.get_venue(resto) 
+        send_venue(lat, long, resto, adresse)
+
         {:ok, _} = send_message "Choisissez une catégorie de plats",
           reply_markup: %Model.InlineKeyboardMarkup{
-            inline_keyboard: [
-              Resto.build_resto(resto),
-            ]
+            inline_keyboard: Resto.build_resto(resto),
           }
         answer_callback_query text: "Excellent choix."
       _ ->
@@ -49,46 +50,76 @@ defmodule StaccaBot.Commands do
   callback_query_command "catégorie" do
     case update.callback_query.data do
       "/catégorie pasta " <> resto ->
-        msg = Resto.build(:pasta, String.to_atom(resto))
+        msg = Resto.build(:pasta, resto)
         send_message "La Pasta de #{resto} : "
         send_message(msg)
         answer_callback_query text: "Bien évidemment, on trouve la meilleur pasta chez " <> resto <> "…"
 
       "/catégorie pizza " <> resto ->
-        msg = Resto.build(:pizza, String.to_atom(resto))
+        msg = Resto.build(:pizza, resto)
         send_message "La Pizza de #{resto} : "
         send_message msg
         answer_callback_query text: "Vous vous régalerez avec ces pizzas de chez " <> resto <> "…"
 
       "/catégorie vin " <> resto ->
-        msg = Resto.build(:vin, String.to_atom(resto))
+        msg = Resto.build(:vin, resto)
         send_message "Les Vins de #{resto} : "
         send_message msg
         answer_callback_query text: "Le vin coule à flots chez " <> resto <> "…"
 
       "/catégorie plats " <> resto ->
-        msg = Resto.build(:plats, String.to_atom(resto))
+        msg = Resto.build(:plats, resto)
         send_message "Les plats principaux de #{resto} : "
         send_message msg
         answer_callback_query text: "Enjaillez vos papilles chez " <> resto <> " !"
 
       "/catégorie burger " <> resto ->
-        msg = Resto.build(:burger, String.to_atom(resto))
+        msg = Resto.build(:burger, resto)
         send_message "Les burgers de #{resto} : "
         send_message msg
         answer_callback_query text: "Un bon burger !"
 
       "/catégorie kebab " <> resto ->
-        msg = Resto.build(:kebab, String.to_atom(resto))
+        msg = Resto.build(:kebab, resto)
         send_message "Les kebabs de #{resto} : "
         send_message msg
         answer_callback_query text: "Rien de mieux qu'un bon kebab~"
 
       "/catégorie assiette " <> resto ->
-        msg = Resto.build(:assiette, String.to_atom(resto))
+        msg = Resto.build(:assiette, resto)
         send_message "Le choix d'assiettes de " <> resto
         send_message msg
         answer_callback_query text: "Une assiette à déguster !"
+
+      "/catégorie grillades " <> resto ->
+        msg = Resto.build(:grillades, resto)
+        send_message "Les grillades, chez " <> resto
+        send_message msg
+        answer_callback_query text: "Ça va être chaud !"
+
+      "/catégorie salades " <> resto ->
+        msg = Resto.build(:salades, resto)
+        send_message "Une petite salade chez " <> resto <> " ?"
+        send_message msg
+        answer_callback_query text: "C'est bon la salade."
+
+      "/catégorie soupes " <> resto ->
+        msg = Resto.build(:salades, resto)
+        send_message "Le choix de soupe chez " <> resto
+        send_message msg
+        answer_callback_query text: "À LA SOUUUUUUPE ! Non, pas toi Obélix !"
+
+      "/catégorie légumes " <> resto ->
+        msg = Resto.build(:légumes, resto)
+        send_message "Les légumes proposés par " <> resto
+        send_message msg
+        answer_callback_query text: "Appelez Léguman !!"
+
+      "/catégorie viandes " <> resto ->
+        msg = Resto.build(:viandes, resto)
+        send_message "Les viandes à la carte chez " <> resto
+        send_message msg
+        answer_callback_query text: "De vrais briques de protéines !"
     end
   end
 

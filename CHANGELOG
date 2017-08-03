@@ -1,3 +1,8 @@
 2017-08-03  Théophile Choutri <theophile@choutri.eu>
 
-	* Ajout du faux menu et publication sur GitHub.
+	* Feature: The bot now sends a `venue` object with the coordinate, a title and the address
+	* Feature: Every 2 category, a new keyboard section is created (useful for
+	  mobile screens)
+	* Enhancement: Less type conversions in the source code.
+	* Enhancement: Now, the `%Resto{}` structs holds the informations about
+	  each restaurant.
