@@ -1,7 +1,8 @@
 [Luna Rossa]
 
 description = "Une charmante pizzeria située à Romainville"
-coordonees  = [48.8818653,2.4394738]
+coordonnees  = [48.8818653,2.4394738]
+adresse     = "45, rue de la République, 93230 Romainville, France"
 
 [Luna Rossa.carte.pizza]
 
@@ -23,7 +24,8 @@ Blanc de Provence  = 12
 [Le Train de Vie]
 
 description = "Un petit restaurant dont la majorité du menu change chaque semaine…"
-coordonees = [48.8826735,2.433251]
+coordonnees  = [48.8826735,2.433251]
+adresse     = "95 av du Docteur David Rosenfeld, 93230 Romainville, France"
 
 [Le Train de Vie.carte.plats]
 
@@ -34,7 +36,8 @@ Pièce du boucher / Frites   = 12
 [Istanbul Express]
 
 description = "Un restaurant kebab à côté du Conservatoire"
-coordonees = [48.8828764,2.4318964]
+coordonnees  = [48.8828764,2.4318964]
+adresse     = "83, Avenue du Président Wilson, 93230 Romainville, France"
 
 [Istanbul Express.carte.kebab]
 
@@ -72,3 +75,64 @@ Merguez = 7.50
 Mixte  = 11
 Steak = 8
 
+
+[Namaste Népal]
+
+description = "Restaurant Népalais à deux pas de la mairie de Romainville"
+coordonnees = [48.8845271,2.4348339]
+adresse     = "26 Rue de Paris, 93230 Romainville, France"
+
+[Namaste Népal.carte.grillades]
+
+Poulet Tandoori      = 6
+Poulet Tikka Sashlik = 7
+Agneau Tikka Sashlik = 8
+Saumon Tikka Sashlik = 9
+Seekh Kabab          = 7
+Gambas Tandoori      = 18
+Mix Grill Népal      = 20
+
+[Namaste Népal.carte.salades]
+
+Raïta = 4
+Salade Indienne = 4.50
+Salade De Poulet = 6
+Salade Aux Crevettes = 7
+
+[Namaste Népal.carte.soupes]
+
+Daal Soupe    = 5.50
+Légumes Soupe = 5
+Poulet Soupe  = 5.50
+
+[Namaste Népal.carte.légumes]
+
+Légumes Jalfregi = 8
+Daal Handi       = 7.50
+Daal Tarka       = 7.50
+Daal Palak       = 7.50
+Palak Paneer     = 7.50
+Matar Paneer     = 7.50
+Baigan Bharta    = 7
+Bombay Allo      = 7.50
+Légumes Korma    = 8.50
+
+[Namaste Népal.carte.viandes]
+
+Poulet curry nepal maison = 10
+Poulet vindaloo = 10
+Poulet makhani/ butter chicken = 12
+Poulet tikka masala = 12
+Poulet royal korma = 11.50
+Poulet saag = 10.50
+Poulet madras = 10.50
+Karahi poulet nepal = 12.50
+Poulet pistaches = 11.50
+Agneau tikka masala = 13,50
+Agneau madras = 12
+Agneau vindaloo = 12
+Agneau saag = 11.50
+Agneau karahi namaste = 13
+Agneau royal korma = 12.50
+Agneau bharta = 12
+Agneau nepal = 13
