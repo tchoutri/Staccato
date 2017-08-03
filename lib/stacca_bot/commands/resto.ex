@@ -30,9 +30,9 @@ defmodule StaccaBot.Commands.Resto do
   end
 
 
-  @spec build_inline_keyboard([atom()], atom()) :: [map()]
-def build_inline_keyboard(categories, restaurant) when is_list(categories) and
-                                                       is_atom(restaurant) do
+  @spec build_inline_keyboard([atom()], String.t) :: [map()]
+  def build_inline_keyboard(categories, restaurant) when is_list(categories) and
+                                                         is_binary(restaurant) do
     Enum.map categories, fn cat ->
       %{
         callback_data: "/catégorie #{cat} #{restaurant}",
@@ -42,8 +42,8 @@ def build_inline_keyboard(categories, restaurant) when is_list(categories) and
   end
 
   @spec build(atom(), atom()) :: String.t
-def build(cat, resto) when is_atom(resto) and
-                           is_atom(cat) do
+  def build(cat, resto) when is_atom(resto) and
+                             is_atom(cat) do
     load_resto()
     |> Map.get(resto)
     |> Map.get(cat)
