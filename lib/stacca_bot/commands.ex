@@ -53,21 +53,42 @@ defmodule StaccaBot.Commands do
         send_message "La Pasta de #{resto} : "
         send_message(msg)
         answer_callback_query text: "Bien évidemment, on trouve la meilleur pasta chez " <> resto <> "…"
+
       "/catégorie pizza " <> resto ->
         msg = Resto.build(:pizza, String.to_atom(resto))
         send_message "La Pizza de #{resto} : "
         send_message msg
         answer_callback_query text: "Vous vous régalerez avec ces pizzas de chez " <> resto <> "…"
+
       "/catégorie vin " <> resto ->
         msg = Resto.build(:vin, String.to_atom(resto))
         send_message "Les Vins de #{resto} : "
         send_message msg
         answer_callback_query text: "Le vin coule à flots chez " <> resto <> "…"
+
       "/catégorie plats " <> resto ->
         msg = Resto.build(:plats, String.to_atom(resto))
         send_message "Les plats principaux de #{resto} : "
         send_message msg
         answer_callback_query text: "Enjaillez vos papilles chez " <> resto <> " !"
+
+      "/catégorie burger " <> resto ->
+        msg = Resto.build(:burger, String.to_atom(resto))
+        send_message "Les burgers de #{resto} : "
+        send_message msg
+        answer_callback_query text: "Un bon burger !"
+
+      "/catégorie kebab " <> resto ->
+        msg = Resto.build(:kebab, String.to_atom(resto))
+        send_message "Les kebabs de #{resto} : "
+        send_message msg
+        answer_callback_query text: "Rien de mieux qu'un bon kebab~"
+
+      "/catégorie assiette " <> resto ->
+        msg = Resto.build(:assiette, String.to_atom(resto))
+        send_message "Le choix d'assiettes de " <> resto
+        send_message msg
+        answer_callback_query text: "Une assiette à déguster !"
     end
   end
 
