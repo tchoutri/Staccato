@@ -21,6 +21,44 @@ Blanc de Provence  = 12
 
 [Le Train de Vie.plats]
 
-Burger Frites      = 13
-Saumon poché       = 15
-Marinade d'endives = 15
+Burger Frites               = 11
+Pièce du boucher / Frites   = 12
+
+
+[Istambul Express]
+
+[Istambul Express.kebab]
+
+Adana = 6.50
+Boulettes = 6.50
+Brochette d'agneau = 7
+Brochette de poulet = 6.50
+Chicken = 7
+Galette = 6.50
+Grec Kebab = 6.50
+Merguez = 6
+Mixte = 7.50
+Speciale Kebab = 7.50
+Steak = 7
+
+[Istambul Express.burger]
+
+Cheese Burger = 5
+Double Cheese = 6
+Triple Cheese = 7
+Hummer H1     = 5
+Hummer H2     = 6
+Hummer H3     = 7
+
+[Istambul Express.assiette]
+
+Brochette d'agneau = 9
+Brochette de poulet = 8
+Kofte = 8
+Adana = 8
+Grecque = 8
+Mixte  = 11
+Cotelette =  10
+Steak = 8
+Chicken = 8
+Merguez = 7.50
