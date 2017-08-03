@@ -4,13 +4,14 @@ defmodule StaccaBot.Commands.Resto do
   alias __MODULE__
 
   defstruct [:carte,
-             :coordonees,
+             :coordonnees,
+             :adresse,
              :description,
              :nom
             ]
 
   @type t :: %__MODULE__{nom: String.t, description: String.t,
-                         coordonees: [float()], carte: map()
+                         coordonnees: [float()], carte: map(), adresse: String.t
                         }
 
   def resto(update) do
@@ -33,6 +34,10 @@ defmodule StaccaBot.Commands.Resto do
             callback_data: "/resto Istanbul Express",
             text: "Istanbul Express",
           },
+          %{
+            callback_data: "/resto Namaste Népal",
+            text: "Namaste Népal"
+          }
         ]
       ]
     }
@@ -40,11 +45,12 @@ defmodule StaccaBot.Commands.Resto do
 
   @spec build_resto(String.t) :: [map()]
   def build_resto(resto) when is_binary(resto) do
-    load_resto()
+    load_restos()
     |> get_resto(resto)
     |> Map.get(:carte)
     |> Map.keys
-    |> build_inline_keyboard(resto)
+    |> Enum.chunk_every(2)
+    |> Enum.map(fn chunk -> Resto.build_inline_keyboard(chunk, resto) end)
   end
 
 
@@ -62,7 +68,7 @@ defmodule StaccaBot.Commands.Resto do
   @spec build(atom(), String.t) :: String.t
   def build(cat, resto) when is_binary(resto) and
                              is_atom(cat) do
-    load_resto()
+    load_restos()
     |> get_resto(resto)
     |> Map.get(:carte)
     |> Map.get(cat)
@@ -70,17 +76,47 @@ defmodule StaccaBot.Commands.Resto do
     |> Enum.join("\n")
   end
 
-  @spec load_resto() :: [Resto.t]
-  def load_resto() do
+  @spec load_restos() :: [Resto.t]
+def load_restos() do
     File.read!("priv/resto.toml")
     |> Tomlex.load
-    |> Enum.map(fn {nom, data} -> %Resto{carte: data.carte, coordonees: data.coordonees,
+    |> Enum.map(fn {nom, data} -> %Resto{carte: data.carte, coordonnees: data.coordonnees,
                                          description: data.description, nom: Atom.to_string(nom)} end)
   end
 
   @spec get_resto([Resto.t()], String.t) :: Resto.t
-def get_resto(restos, nom) when is_list(restos) and
+  def get_resto(restos, nom) when is_list(restos) and
                                 is_binary(nom) do
     Enum.find(restos, fn struct -> struct.nom == nom end)
+  end
+
+  # @spec get_coord(String.t) :: [float()]
+  def get_coord(resto) when is_binary(resto) do
+    load_restos()
+    |> get_resto(resto)
+    |> Map.get(:coordonnees) 
+  end
+
+  def get_coord(%Resto{coordonnees: coord}=resto) when is_map(resto) do
+    coord
+  end
+
+  # @spec get_adresse(String.t) :: String.t
+  def get_adresse(resto) when is_binary(resto) do
+    load_restos()
+    |> get_resto(resto)
+    |> Map.get(:adresse)
+  end
+
+  def get_adresse(%Resto{adresse: adresse}=resto) when is_map(resto) do
+    adresse
+  end
+
+  @spec get_venue(String.t) :: {float(), float(), String.t}
+  def get_venue(resto) when is_binary(resto) do
+    r = get_resto(load_restos(), resto)
+    [lat, long] = get_coord(r)
+    adresse     = get_adresse(r)
+    {lat, long, adresse}
   end
 end
