@@ -25,9 +25,9 @@ defmodule StaccaBot.Commands do
   callback_query_command "bus" do
     case update.callback_query.data do
       "/bus " <> bus ->
-        [horaire1, horaire2] = GenServer.call RATPWorker, {:bus, bus} 
-        send_message horaire1
-        answer_callback_query text: horaire2
+        horaires = GenServer.call RATPWorker, {:bus, bus} 
+        send_message horaires
+        answer_callback_query text: ":)"
       _ ->
         Logger.warn "Something fucked up. The user managed to enter another input starting with /bus…"
         answer_callback_query text: "srsly… :/"

@@ -22,11 +22,11 @@ defmodule StaccaBot.RATPWorker do
 
   def handle_call({:bus, bus}, _from, state) do
     result = case bus do
-      "105" -> [carnot("A"), carnot("R")]
-      "322" -> [sente_des_mares("A"), sente_des_mares("R")]
-      "129" -> [romainville_carnot("A"), romainville_carnot("R")]
+      "105" -> Enum.join [carnot("A"), carnot("R")], "\n"
+      "322" -> Enum.join [sente_des_mares("A"), sente_des_mares("R")], "\n"
+      "129" -> Enum.join [romainville_carnot("A"), romainville_carnot("R")], "\n"
     end
-    {:ok, result}
+    {:reply, result, state}
   end
 
 
@@ -69,7 +69,7 @@ defmodule StaccaBot.RATPWorker do
   defp build(map) do
     structure = struct(%Resource{}, map)
 
-    "https://api-ratp.pierre-grimaud.fr/v3/schedules/#{structure.mode}/#{structure.ligne}/#{structure.arret}/#{structure.direction}?_format=JSON"
+    "https://api-ratp.pierre-grimaud.fr/v3/schedules/#{structure.mode}/#{structure.ligne}/#{structure.arret}/#{structure.direction}"
     |> get_schedules
     |> format_schedules
   end
@@ -79,7 +79,7 @@ defmodule StaccaBot.RATPWorker do
       {:ok, response} ->
         Poison.decode response.body
       {:error, reason} ->
-        Logger.error inspect(reason)
+        Logger.error "Error while fetching schedules: " <> inspect(reason)
         {:error, reason}
     end
   end
