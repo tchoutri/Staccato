@@ -2,7 +2,7 @@ defmodule StaccaBot.Commands.RATP do
   use StaccaBot.Commander
 
   def bus(update) do
-    {:ok, _} = send_message "",
+    {:ok, _} = send_message " ",
 
     reply_markup: %Model.InlineKeyboardMarkup{
       inline_keyboard: [
