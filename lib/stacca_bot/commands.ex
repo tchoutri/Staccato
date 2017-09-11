@@ -2,6 +2,7 @@ defmodule StaccaBot.Commands do
   use StaccaBot.Router
   use StaccaBot.Commander
 
+  alias StaccaBot.RATPWorker
   alias StaccaBot.Commands.{Resto,RATP}
 
   # You can create commands in the format `/command` by
