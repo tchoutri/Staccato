@@ -15,7 +15,7 @@ defmodule StaccaBot.Commands.Resto do
                         }
 
   def resto(update) do
-    {:ok, _} = send_message "Liste des restaurants en mémoire",
+    {:ok, _} = send_message "Liste des restaurants",
 
     reply_markup: %Model.InlineKeyboardMarkup{
       inline_keyboard: [

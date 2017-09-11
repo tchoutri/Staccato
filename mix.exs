@@ -19,9 +19,11 @@ defmodule StaccaBot.Mixfile do
 
   defp deps do
     [
+      {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
+      {:httpoison, "~> 0.13.0"},
       {:nadia, github: "zhyu/nadia"},
-      {:tomlex, github: "zamith/tomlex"},
-      {:credo, "~> 0.8", only: [:dev, :test], runtime: false}
+      {:poison, "~> 3.1.0"},
+      {:tomlex, github: "zamith/tomlex"}
     ]
   end
 

@@ -2,28 +2,37 @@ defmodule StaccaBot.Commands do
   use StaccaBot.Router
   use StaccaBot.Commander
 
-  alias StaccaBot.Commands.Resto
+  alias StaccaBot.Commands.{Resto,RATP}
 
   # You can create commands in the format `/command` by
   # using the macro `command "command"`.
   command ["hello", "hi"] do
     # Logger module injected from StaccaBot.Commander
     Logger.log :info, "Command /hello or /hi"
-
-    # You can use almost any function from the Nadia core without
-    # having to specify the current chat ID as you can see below.
-    # For example, `Nadia.send_message/3` takes as first argument
-    # the ID of the chat you want to send this message. Using the
-    # macro `send_message/2` defined at StaccaBot.Commander, it is
-    # injected the proper ID at the function. Go take a look.
-    #
-    # See also: https://hexdocs.pm/nadia/Nadia.html
     send_message "Hello World!"
   end
 
   # You may split code to other modules using the syntax
   # "Module, :function" instead od "do..end"
   command "resto", Resto, :resto
+  command "bus", RATP, :bus
+
+  #######
+  # Bus #
+  #######
+
+  callback_query_command "bus" do
+    case update.callback_query.data do
+      "/bus " <> bus ->
+        [horaire1, horaire2] = GenServer.call RATPWorker, {:bus, bus} 
+        send_message horaire1
+        answer_callback_query text: horaire2
+      _ ->
+        Logger.warn "Something fucked up. The user managed to enter another input starting with /bus…"
+        answer_callback_query text: "srsly… :/"
+    end
+  end
+
 
   ###############
   # Restaurants #
@@ -196,8 +205,8 @@ defmodule StaccaBot.Commands do
     <b>Aide pour Staccato</b>
     <i>Si vous voulez les menus des restaurants que j'ai en mémoire, tapez : </i>
     <code>/resto</code>
+    <i>Les bus en mémoire sont le 105, 129 et 322</i>
     <i>Le reste suivra…</i>
     """
   end
-
 end
