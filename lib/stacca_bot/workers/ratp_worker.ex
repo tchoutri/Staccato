@@ -21,6 +21,7 @@ defmodule StaccaBot.RATPWorker do
   end
 
   def handle_call({:bus, bus}, _from, state) do
+    Logger.debug "Requesting schedules for bus " <> bus
     result = case bus do
       "105" -> Enum.join [carnot("A"), carnot("R")], "\n"
       "322" -> Enum.join [sente_des_mares("A"), sente_des_mares("R")], "\n"
@@ -30,7 +31,7 @@ defmodule StaccaBot.RATPWorker do
   end
 
 
-  defp sente_des_mares(way) do
+  def sente_des_mares(way) do
     %{}
     |> mode("bus")
     |> ligne("322")
@@ -39,7 +40,7 @@ defmodule StaccaBot.RATPWorker do
     |> build()
   end
 
-  defp carnot(way) do
+  def carnot(way) do
     %{}
     |> mode("bus")
     |> ligne("105")
@@ -48,7 +49,7 @@ defmodule StaccaBot.RATPWorker do
     |> build()
   end
 
-  defp romainville_carnot(way) do
+  def romainville_carnot(way) do
     %{}
     |> mode("bus")
     |> ligne("129")
